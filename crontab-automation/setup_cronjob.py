@@ -12,16 +12,16 @@
         removed before created the new cronjob.
 """
 
-################################################################################
+###############################################################################
 
 # python-crontab: python -m pip install python-crontab
 # Documentation: https://pypi.org/project/python-crontab/
 from crontab import CronTab
 
-################################################################################
+###############################################################################
 
-# The cronjob will be setup to run the command below and it will be given the name
-# assigned to job_name.
+# The cronjob will be setup to run the command below and it will be given the 
+# name assigned to job_name.
 command = "echo hello"
 job_name = "Article Recommender"
 
@@ -31,7 +31,7 @@ hour_range = [21, 22]
 # Run the job at the minutes defined below.
 minute_on = [0, 30]
 
-################################################################################
+###############################################################################
 
 # Modify the crontab file of the current user.
 with CronTab(user=True) as cron:
