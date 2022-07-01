@@ -4,4 +4,4 @@ env.py
 __pycache__/
 *.csv
 *.xlsx
-env/
+article_recommender_venv/
