@@ -1,0 +1,13 @@
+# This is a simple shell script that will run the black formatter on all 
+# command line arguments before git adding them. A few commands need to be run 
+# in order to setup this script to execute with the command:
+# git add-format file1 file2 ...
+
+# Make the script executable:
+# chmod u+x add-format
+
+# Create a git alias to run the script with git add-format:
+# git config alias.add-format '!./add-format'
+
+black $@
+git add $@
