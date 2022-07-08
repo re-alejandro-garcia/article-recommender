@@ -26,6 +26,7 @@ import sys
 sys.path.append("logging")
 
 import logging
+import pandas as pd
 
 from configure_logger import configure_logger
 
@@ -38,7 +39,10 @@ if __name__ == "__main__":
 
     # read new emails for updates
 
-    # scrape all websites
+    # Pull all the latest articles from each website and API in the database.
+    sites_and_apis = pd.read_csv("data/site-and-api-data.csv")
+    for source in sites_and_apis:
+        pass
 
     # prepare the article data
 
