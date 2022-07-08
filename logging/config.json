@@ -16,7 +16,7 @@
         },
         "timedRotatingFileHandler" : {
             "class" : "logging.handlers.TimedRotatingFileHandler",
-            "filename" : "application.log",
+            "filename" : "logs/application.log",
             "level" : "INFO",
             "formatter" : "standard",
             "encoding" : "utf8",
