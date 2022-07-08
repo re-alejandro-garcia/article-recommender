@@ -6,3 +6,4 @@ __pycache__/
 *.xlsx
 article_recommender_venv/
 application.log
+shell-scripts/
