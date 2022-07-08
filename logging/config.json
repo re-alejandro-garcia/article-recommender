@@ -1,0 +1,35 @@
+{
+    "version" : 1,
+    "formatters" : {
+        "standard" : {
+            "format" : "[%(asctime)s] - %(name)s - %(levelname)s - %(message)s",
+            "datefmt" : "%D - %H:%M"
+        }
+    },
+    "handlers" : {
+        "fileHandler" : {
+            "class" : "logging.FileHandler",
+            "filename" : "application.log",
+            "level" : "INFO",
+            "formatter" : "standard",
+            "encoding" : "utf8"
+        },
+        "timedRotatingFileHandler" : {
+            "class" : "logging.handlers.TimedRotatingFileHandler",
+            "filename" : "application.log",
+            "level" : "INFO",
+            "formatter" : "standard",
+            "encoding" : "utf8",
+            "when" : "midnight",
+            "interval" : 1,
+            "backupCount" : 7
+        }
+    },
+    "loggers" : {
+        "webScraper" : {
+            "level" : "INFO",
+            "handlers" : ["timedRotatingFileHandler"],
+            "propagate" : "no"
+        }
+    }
+}
