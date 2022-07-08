@@ -5,5 +5,5 @@ __pycache__/
 *.csv
 *.xlsx
 article_recommender_venv/
-application.log
+logs/
 shell-scripts/
