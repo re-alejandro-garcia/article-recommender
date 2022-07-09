@@ -45,7 +45,9 @@ except GetoptError:
 # These are the commands that will be executed by crontab for running the
 # article recommender app and the web scraper.
 article_recommender_command = "execute article recommender (actual command pending)"
-web_scraper_command = "~/Repositories/article-recommender/shell-scripts/run-web-scraper"
+web_scraper_command = (
+    "~/Repositories/article-recommender/shell-scripts/run-web-scraper.sh"
+)
 
 # These are the job names for each cronjob. These are used for finding and
 # removing the command when being replaced.
@@ -55,6 +57,7 @@ web_scraper_job_name = "Web Scraper"
 # Run the jobs during the hours defined below.
 article_recommender_hour_range = [21, 22]
 web_scraper_hour_on = [0, 12, 18]
+web_scraper_minute_on = [0]
 
 # Run the job at the minutes defined below.
 article_recommender_minute_on = [0, 30]
@@ -94,3 +97,4 @@ if "-w" in options:
         if "-d" not in options:
             job = cron.new(command=web_scraper_command, comment=web_scraper_job_name)
             job.hour.on(*web_scraper_hour_on)
+            job.minute.on(*web_scraper_minute_on)
