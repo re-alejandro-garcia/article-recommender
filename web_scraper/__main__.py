@@ -24,6 +24,7 @@
 import sys
 
 sys.path.append("logging")
+sys.path.append("modules")
 
 import logging
 import pandas as pd

@@ -17,6 +17,10 @@
 
 ###############################################################################
 
+import sys
+
+sys.path.append("modules")
+
 import json
 import logging.config
 import os
