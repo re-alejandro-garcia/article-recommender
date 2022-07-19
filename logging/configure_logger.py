@@ -9,6 +9,10 @@
         the configuration arguments. If the config.json file is somehow missing
         an email is sent to the repo owner with the error message.
 
+    Variables:
+
+        base_error_message
+
     Functions: 
 
         configure_logger(config_file_name = 'config.json')
