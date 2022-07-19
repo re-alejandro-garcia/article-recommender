@@ -25,13 +25,20 @@ import sys
 
 sys.path.append("logging")
 sys.path.append("modules")
+sys.path.append("web_scraper/extract")
 
 import logging
 import pandas as pd
 import traceback
 
+import medium
+
 from configure_logger import configure_logger
 from env import email_address
+
+###############################################################################
+
+functions = {"medium": medium.get_latest_article_data}
 
 ###############################################################################
 
@@ -45,16 +52,17 @@ if __name__ == "__main__":
         if logger_configured_successfully:
             logger = logging.getLogger("webScraper")
 
-        # read new emails for updates
+        # TODO read new emails for updates
 
         # Pull all the latest articles from each website and API in the database.
         sites_and_apis = pd.read_csv("data/site-and-api-data.csv")
-        for source in sites_and_apis:
+        for source in sites_and_apis["name"]:
+            # TODO
             pass
 
-        # prepare the article data
+        # TODO prepare the article data
 
-        # write the data to the database
+        # TODO write the data to the database
 
         # If the logger  was configured successfully log that execution of the
         # web scraper script completed.
