@@ -4,7 +4,7 @@
 
     Description:
 
-        This module contains all unit tests for the medium.py module in the 
+        This module contains all unit tests for the medium.py module in the
         web_scraper package.
 
     Variables:
@@ -13,7 +13,7 @@
 
     Functions:
 
-        test_get_article_data(url, expected_output)
+        test_get_article_data(url, publication, expected_output)
         test_get_latest_posts_links()
         test_get_latest_article_data()
 
@@ -25,6 +25,7 @@ import sys
 
 sys.path.append("web_scraper/extract/")
 
+import pytest
 import medium
 
 ###############################################################################
@@ -32,6 +33,7 @@ import medium
 expected_output_get_article_data = [
     (
         "https://towardsdatascience.com/ai-can-now-play-minecraft-and-is-a-step-closer-to-navigate-the-world-1f19cfe37ef",
+        "Towards Data Science",
         {
             "author": ["Alberto Romero"],
             "publication": ["Towards Data Science"],
@@ -48,7 +50,10 @@ expected_output_get_article_data = [
                 "https://towardsdatascience.com/ai-can-now-play-minecraft-and-is-a-step-closer-to-navigate-the-world-1f19cfe37ef"
             ],
         },
+    ),
+    (
         "https://betterprogramming.pub/how-i-negotiated-100k-from-google-370823b2c79c",
+        "Better Programming",
         {
             "author": ["Sunny Beatteay"],
             "publication": ["Better Programming"],
@@ -63,7 +68,10 @@ expected_output_get_article_data = [
                 "https://betterprogramming.pub/how-i-negotiated-100k-from-google-370823b2c79c"
             ],
         },
+    ),
+    (
         "https://levelup.gitconnected.com/7-php-string-functions-you-should-know-and-how-to-use-them-c2727397158f",
+        "Level Up Coding",
         {
             "author": ["Joshua Otwell"],
             "publication": ["Level Up Coding"],
@@ -78,15 +86,17 @@ expected_output_get_article_data = [
                 "https://levelup.gitconnected.com/7-php-string-functions-you-should-know-and-how-to-use-them-c2727397158f"
             ],
         },
-    )
+    ),
 ]
 
 ###############################################################################
 
 
-@pytest.mark.parametrize("url, expected_output", expected_output_get_article_data)
-def test_get_article_data(url, expected_output):
-    assert medium.get_article_data(url) == expected_output
+@pytest.mark.parametrize(
+    "url, publication, expected_output", expected_output_get_article_data
+)
+def test_get_article_data(url, publication, expected_output):
+    assert medium.get_article_data(url, publication) == expected_output
 
 
 ###############################################################################
