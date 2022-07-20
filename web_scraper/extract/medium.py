@@ -26,8 +26,8 @@ from bs4 import BeautifulSoup
 
 ###############################################################################
 
-# TODO
-def get_latest_article_data(url: str) -> pd.DataFrame:
+
+def get_latest_article_data(url: str) -> pd.DataFrame:  # TODO
     """
     Collect data for the latest articles posted on the medium publication
     referenced by the provided URL.
@@ -49,8 +49,8 @@ def get_latest_article_data(url: str) -> pd.DataFrame:
 
 ###############################################################################
 
-# TODO
-def get_latest_posts_links(url: str) -> list[str]:
+
+def get_latest_posts_links(url: str) -> list[str]:  # TODO
     """
     Returns the URL links to 10 latest articles posted on the medium
     publication referenced by the provided URL.
