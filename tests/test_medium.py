@@ -42,7 +42,7 @@ expected_output_get_article_data = [
             ],
             "subtitle": ["The beginning of open-ended AI"],
             "article_intro": [
-                "After building impressive models in language processing (GPT-3) and text-to-image generation (DALL·E 2), OpenAI is now facing an arguably greater challenge: open-ended action. In the great task of solving so-called artificial general intelligence (AGI), they realize language and vision aren’t the only…"
+                "After building impressive models in language processing (GPT-3) and text-to-image generation (DALL·E 2), OpenAI is now facing an arguably greater challenge: open-ended action. In the great task of solving so-called artificial general intelligence (AGI), they realize language and vision aren’t the only domains in which AI should excel. GPT-3 and DALL·E 2 are extremely good at what they do, but as powerful as they are they remain constrained within the limited boundaries of their virtual worlds."
             ],
             "date": ["Jul 6"],
             "read_time": ["7 min read"],

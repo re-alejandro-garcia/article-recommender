@@ -111,7 +111,7 @@ def get_article_data(url: str, publication: str) -> dict:
     # Sometimes articles don't have a subtitle so we must check if there is a subtitle and
     # set the subtitle to an empty string if one doesn't exist.
     if (subtitle := soup.find("h2", class_="pw-subtitle-paragraph")) is None:
-        article_info["subtitle"] = [None]
+        article_info["subtitle"] = [""]
     else:
         article_info["subtitle"] = [subtitle.text]
 
