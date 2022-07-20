@@ -1,5 +1,6 @@
 import logging
-import traceback
+
+# import traceback
 import yagmail
 from ArticleSuggestor.Email_Interface import Configure_Email
 

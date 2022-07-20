@@ -4,8 +4,8 @@
 
     Description:
 
-        This script is used to configure the loggers that are used for the 
-        web scraper and article recommender. The config.json file contains all 
+        This script is used to configure the loggers that are used for the
+        web scraper and article recommender. The config.json file contains all
         the configuration arguments. If the config.json file is somehow missing
         an email is sent to the repo owner with the error message.
 
@@ -13,7 +13,7 @@
 
         base_error_message
 
-    Functions: 
+    Functions:
 
         configure_logger(config_file_name = 'config.json')
 
@@ -88,7 +88,8 @@ def configure_logger(config_file_name="config.json") -> bool:
     except FileNotFoundError as file_error:
         message = base_error_message + file_error
         os.system(
-            f'echo {message} | mail -s "Article Recommender Web Scraper Error" {email_address}'
+            f'echo {message} | mail -s "Article Recommender Web Scraper Error\
+                " {email_address}'
         )
         return False
 
@@ -96,7 +97,8 @@ def configure_logger(config_file_name="config.json") -> bool:
     except json.decoder.JSONDecodeError as json_error:
         message = base_error_message + json_error
         os.system(
-            f'echo {message} | mail -s "Article Recommender Web Scraper Error" {email_address}'
+            f'echo {message} | mail -s "Article Recommender Web Scraper Error\
+                " {email_address}'
         )
         return False
 
@@ -105,6 +107,7 @@ def configure_logger(config_file_name="config.json") -> bool:
     except ValueError as value_error:
         message = base_error_message + value_error
         os.system(
-            f'echo {message} | mail -s "Article Recommender Web Scraper Error" {email_address}'
+            f'echo {message} | mail -s "Article Recommender Web Scraper Error\
+                " {email_address}'
         )
         return False

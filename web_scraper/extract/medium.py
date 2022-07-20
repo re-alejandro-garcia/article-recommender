@@ -4,9 +4,9 @@
 
     Description:
 
-        This module contains the web scraping code used for scraping article 
-        data for the latest posts from medium publications. The following 
-        information is collected for each article: author, publication, title, 
+        This module contains the web scraping code used for scraping article
+        data for the latest posts from medium publications. The following
+        information is collected for each article: author, publication, title,
         subtitle, article intro, date, read time, and url.
 
     Functions:
@@ -20,8 +20,9 @@
 ###############################################################################
 
 import pandas as pd
-import requests
-from bs4 import BeautifulSoup
+
+# import requests
+# from bs4 import BeautifulSoup
 
 ###############################################################################
 

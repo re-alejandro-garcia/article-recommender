@@ -4,11 +4,11 @@
 
     Description:
 
-        This is the main entry point for the article recommender web scraper. 
-        This script serves four main purposes: read any received emails to 
+        This is the main entry point for the article recommender web scraper.
+        This script serves four main purposes: read any received emails to
         update the website dataset, scrape article info for all recent articles
-        for each website in the website dataset, prepare the data for the 
-        article recommender application, and store the prepared data in the 
+        for each website in the website dataset, prepare the data for the
+        article recommender application, and store the prepared data in the
         database.
 
     Example Usage:
@@ -27,6 +27,7 @@ sys.path.append("logging")
 sys.path.append("modules")
 sys.path.append("web_scraper/extract")
 
+import os
 import logging
 import pandas as pd
 import traceback
@@ -46,7 +47,8 @@ if __name__ == "__main__":
     try:
 
         # Configure the logger using the configure_logger module. If the
-        # configuration was successful use the webScraper logger for this script.
+        # configuration was successful use the webScraper logger for this
+        # script.
         logger_configured_successfully = configure_logger()
         logger = None
         if logger_configured_successfully:
@@ -54,7 +56,8 @@ if __name__ == "__main__":
 
         # TODO read new emails for updates
 
-        # Pull all the latest articles from each website and API in the database.
+        # Pull all the latest articles from each website and API in the
+        # database.
         sites_and_apis = pd.read_csv("data/site-and-api-data.csv")
         for source in sites_and_apis["name"]:
             # TODO
@@ -78,8 +81,8 @@ if __name__ == "__main__":
     # If an unhandled and unexpected error occurred.
     except Exception as error:
         message = """
-            An unexpected and unhandled error occurred in the Article 
-            Recommender Web Scraper. This error caused execution of the script 
+            An unexpected and unhandled error occurred in the Article
+            Recommender Web Scraper. This error caused execution of the script
             to hault. The error has been logged and is also shown here.
 
         """
@@ -93,5 +96,6 @@ if __name__ == "__main__":
 
         # Send an email to the app owner containing the error message.
         os.system(
-            f'echo {message + error_message} | mail -s "Article Recommender Web Scraper Error" {email_address}'
+            f'echo {message + error_message} | mail -s "Article Recommender \
+                Web Scraper Error" {email_address}'
         )
