@@ -27,6 +27,8 @@ sys.path.append("web_scraper/extract/")
 
 import pytest
 import medium
+import re
+import requests
 
 ###############################################################################
 
@@ -89,21 +91,54 @@ expected_output_get_article_data = [
     ),
 ]
 
+input_get_latest_posts_links = [
+    ("https://towardsdatascience.com/latest", "https://towardsdatascience.com/"),
+    ("https://betterprogramming.pub/latest", "https://betterprogramming.pub/"),
+    ("https://levelup.gitconnected.com/latest", "https://levelup.gitconnected.com/"),
+]
+
 ###############################################################################
 
 
 @pytest.mark.parametrize(
     "url, publication, expected_output", expected_output_get_article_data
 )
-def test_get_article_data(url, publication, expected_output):
+def test_get_article_data(url: str, publication: str, expected_output: dict):
+    """
+    Run unit tests on medium.get_article_data(). Each test will compare the
+    output to the expected output and check for an exact match.
+    """
+
     assert medium.get_article_data(url, publication) == expected_output
 
 
 ###############################################################################
 
 
-def test_get_latest_posts_links():
-    pass
+@pytest.mark.parametrize("url, base_url", input_get_latest_posts_links)
+def test_get_latest_posts_links(url: str, base_url: str):
+    """
+    Run unit tests on medium.get_latest_posts_links(). Each test will check if
+    the list of returned URLs is a valid set of URLs based on three conditions:
+    (1) the base URL is present, (2) the base URL is followed by 1 or more
+    characters, and (3) if we try obtaining a http request for the URL we get a
+    200 status code.
+    """
+
+    links = medium.get_latest_posts_links(url)
+    regex = r".+"
+
+    for link in links:
+
+        # Does the link contain the base URL?
+        assert link.startswith(base_url)
+
+        # Is the base URL followed by at least one character?
+        assert re.match(regex, url.replace(base_url, "")) is not None
+
+        # Does sending a request to this link return a status code of 200?
+        resp = requests.get(link)
+        assert resp.status_code == 200
 
 
 ###############################################################################

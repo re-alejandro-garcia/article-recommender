@@ -50,7 +50,7 @@ def get_latest_article_data(url: str) -> pd.DataFrame:  # TODO
 ###############################################################################
 
 
-def get_latest_posts_links(url: str) -> list[str]:  # TODO
+def get_latest_posts_links(url: str) -> list[str]:
     """
     Returns the URL links to 10 latest articles posted on the medium
     publication referenced by the provided URL.
@@ -67,7 +67,15 @@ def get_latest_posts_links(url: str) -> list[str]:  # TODO
         publication.
     """
 
-    pass
+    # Get the HTML for the webpage with an HTTPS request and create the
+    # soup object.
+    response = requests.get(url)
+    soup = BeautifulSoup(response.text, "html.parser")
+
+    # Gather all <a> elements with the relevant title value and get the href
+    # and remove everything after '?source' since this stuff is not needed.
+    links = soup.find_all("a", title="Latest stories published on Towards Data Science")
+    return [link["href"].split("?source")[0] for link in links]
 
 
 ###############################################################################
