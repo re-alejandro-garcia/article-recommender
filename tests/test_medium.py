@@ -29,6 +29,7 @@ import pytest
 import medium
 import re
 import requests
+import pandas as pd
 
 ###############################################################################
 
@@ -97,6 +98,10 @@ input_get_latest_posts_links = [
     ("https://levelup.gitconnected.com/latest", "https://levelup.gitconnected.com/"),
 ]
 
+input_get_latest_article_data = [
+    ("https://towardsdatascience.com/latest", "Towards Data Science")
+]
+
 ###############################################################################
 
 
@@ -144,5 +149,19 @@ def test_get_latest_posts_links(url: str, base_url: str):
 ###############################################################################
 
 
-def test_get_latest_article_data():
-    pass
+@pytest.mark.parametrize("url, publication", input_get_latest_article_data)
+def test_get_latest_article_data(url, publication):
+    """
+    Run unit tests on medium.get_latest_article_data(). Since this function is
+    dependent on the the get_latest_posts_links() and get_article_data()
+    functions it will be assumed that if those functions have passed their
+    tests then this function will be capable of passing its tests. A successful
+    test for this function will consist of two checks: (1) does the function
+    return a Pandas DataFrame, (2) the dataframe should contain 10 rows and 8
+    columns.
+    """
+
+    df = medium.get_latest_article_data(url, publication)
+
+    assert type(df) == pd.DataFrame
+    assert df.shape == (10, 8)
