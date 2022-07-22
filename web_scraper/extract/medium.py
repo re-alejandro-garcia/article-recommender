@@ -11,7 +11,7 @@
 
     Functions:
 
-        get_latest_article_data(url)
+        get_latest_article_data(url, publication)
         get_latest_posts_links(url)
         get_article_data(url, publication)
 
@@ -27,7 +27,7 @@ from bs4 import BeautifulSoup
 ###############################################################################
 
 
-def get_latest_article_data(url: str) -> pd.DataFrame:  # TODO
+def get_latest_article_data(url: str, publication: str) -> pd.DataFrame:
     """
     Collect data for the latest articles posted on the medium publication
     referenced by the provided URL.
@@ -44,7 +44,30 @@ def get_latest_article_data(url: str) -> pd.DataFrame:  # TODO
         articles posted to the provided publication.
     """
 
-    pass
+    # Initialize the article data dataframe.
+    article_data = pd.DataFrame(
+        {
+            "author": [],
+            "publication": [],
+            "title": [],
+            "subtitle": [],
+            "article_intro": [],
+            "date": [],
+            "read_time": [],
+            "url": [],
+            "publication_url": [],
+        }
+    )
+
+    links = get_latest_posts_links(url)
+
+    # For each article link collect the data and combine the existing article
+    # data dataframe with the data collected.
+    for link in links:
+        temp = pd.DataFrame(get_article_data(url, publication))
+        article_data = pd.concat([article_data, temp]).reset_index(drop=True)
+
+    return article_data
 
 
 ###############################################################################
