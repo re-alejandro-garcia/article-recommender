@@ -46,18 +46,7 @@ def get_latest_article_data(url: str, publication: str) -> pd.DataFrame:
     """
 
     # Initialize the article data dataframe.
-    article_data = pd.DataFrame(
-        {
-            "author": [],
-            "publication": [],
-            "title": [],
-            "subtitle": [],
-            "article_intro": [],
-            "date": [],
-            "read_time": [],
-            "url": [],
-        }
-    )
+    article_data = pd.DataFrame()
 
     links = get_latest_posts_links(url)
 

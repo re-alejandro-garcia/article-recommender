@@ -59,8 +59,10 @@ if __name__ == "__main__":
         # Pull all the latest articles from each website and API in the
         # database.
         sites_and_apis = pd.read_csv("data/site-and-api-data.csv")
-        for source in sites_and_apis["name"]:
-            # TODO
+        article_data = pd.DataFrame()
+        for index, row in sites_and_apis.iterrows():
+            # df = functions[row['class']](row['url'], row['name'])
+            # article_data = pd.concat([article_data, df]).reset_index(drop = True)
             pass
 
         # TODO prepare the article data
