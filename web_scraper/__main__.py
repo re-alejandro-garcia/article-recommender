@@ -33,6 +33,7 @@ import pandas as pd
 import traceback
 
 import medium
+import news
 
 from configure_logger import configure_logger
 from env import email_address

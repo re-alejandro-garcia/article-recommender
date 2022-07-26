@@ -3,10 +3,10 @@
     news.py
 
     Description:
-    
+
         This module contains all code used for extracting article information
-        with the News API. The following information is collected for each 
-        article: author, publication, title, subtitle, article intro, date, 
+        with the News API. The following information is collected for each
+        article: author, publication, title, subtitle, article intro, date,
         read time, and url.
 
     Functions:
@@ -20,7 +20,7 @@
 
 import pandas as pd
 
-from newsapi import NewsApiClient
+# from newsapi import NewsApiClient
 
 ###############################################################################
 
