@@ -39,7 +39,10 @@ from env import email_address
 
 ###############################################################################
 
-functions = {"medium": medium.get_latest_article_data}
+functions = {
+    "medium": medium.get_latest_article_data,
+    "news": news.get_latest_article_data,
+}
 
 ###############################################################################
 
