@@ -161,7 +161,7 @@ def test_get_latest_article_data(url, publication):
     columns.
     """
 
-    df = medium.get_latest_article_data(url, publication)
+    df = medium.get_latest_article_data(url, publication, "")
 
     assert type(df) == pd.DataFrame
     assert df.shape == (10, 8)
