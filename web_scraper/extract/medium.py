@@ -28,7 +28,7 @@ from bs4 import BeautifulSoup
 ###############################################################################
 
 
-def get_latest_article_data(url: str, publication: str) -> pd.DataFrame:
+def get_latest_article_data(url: str, publication: str, topic: str) -> pd.DataFrame:
     """
     Collect data for the latest articles posted on the medium publication
     referenced by the provided URL.
@@ -37,6 +37,13 @@ def get_latest_article_data(url: str, publication: str) -> pd.DataFrame:
     ----------
     url: str
         The URL of the medium publication's latest posts page.
+
+    publication: str
+        The name of the publication corresponding to the provided URL.
+
+    topic: str
+        This parameter is not used, it is included only to allow this function
+        to be called in the same way as similar functions in other modules.
 
     Returns
     -------
@@ -71,6 +78,9 @@ def get_latest_posts_links(url: str) -> list[str]:
     ----------
     url: str
         The URL of the medium publication's latest posts page.
+
+    publication: str
+        The name of the publication corresponding to the provided URL.
 
     Returns
     -------
