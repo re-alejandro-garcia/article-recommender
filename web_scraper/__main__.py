@@ -36,13 +36,14 @@ import medium
 import news
 
 from configure_logger import configure_logger
-from env import email_address
+from env import email_address, news_api_key
 
 ###############################################################################
 
-functions = {
-    "medium": medium.get_latest_article_data,
-    "news": news.get_latest_article_data,
+functions = {"medium": medium.get_latest_article_data}
+
+functions_with_api_key = {
+    "news": {"function": news.get_latest_article_data, "api_key": news_api_key}
 }
 
 ###############################################################################
@@ -65,7 +66,11 @@ if __name__ == "__main__":
         sites_and_apis = pd.read_csv("data/site-and-api-data.csv")
         article_data = pd.DataFrame()
         for index, row in sites_and_apis.iterrows():
-            # df = functions[row['class']](row['url'], row['name'])
+            # if row['class'] in functions_with_api_key:
+            #   api_key = functions_with_api_key[row['class']]['api_key']
+            #   df = functions_with_api_key[row['class']]['function'](row['url'], row['name'], row['topic'], api_key)
+            # else:
+            #   df = functions[row['class']](row['url'], row['name'], row['topic'])
             # article_data = pd.concat([article_data, df]).reset_index(drop = True)
             pass
 
