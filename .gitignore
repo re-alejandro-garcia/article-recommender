@@ -2,7 +2,7 @@ env.py
 .ipynb_checkpoints/
 .DS_Store
 __pycache__/
-*.csv
+data/
 *.xlsx
 article_recommender_venv/
 logs/
