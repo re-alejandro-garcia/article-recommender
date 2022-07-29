@@ -10,6 +10,8 @@
     Variables:
 
         expected_output_get_article_data
+        input_get_latest_posts_links
+        input_get_latest_article_data
 
     Functions:
 

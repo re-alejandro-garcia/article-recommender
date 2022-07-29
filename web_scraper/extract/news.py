@@ -11,8 +11,9 @@
 
     Functions:
 
-        get_latest_article_data(*args)
-        get_article_data(article)
+        get_latest_article_data(url, publication, topic, api_key)
+        get_news_page(news, topic, timestamp, url)
+        get_article_data(articles)
 
 """
 
@@ -61,6 +62,8 @@ def get_latest_article_data(
     news = NewsApiClient(api_key=api_key)
     timestamp = None
 
+    # For page yielded by the get_news_page function add the returned
+    # dataframe to the article_data dataframe.
     for page in get_news_page(news, topic, timestamp, url):
         article_data = pd.concat([article_data, page]).reset_index(drop=True)
 
