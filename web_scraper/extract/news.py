@@ -19,6 +19,7 @@
 
 ###############################################################################
 
+import numpy as np
 import pandas as pd
 
 from newsapi import NewsApiClient
@@ -168,7 +169,7 @@ def get_article_data(articles: dict) -> pd.DataFrame:
         article_info["subtitle"] = [article["description"][:100]]
         article_info["article_intro"] = [article["content"]]
         article_info["date"] = [article["publishedAt"]]
-        article_info["read_time"] = [None]
+        article_info["read_time"] = [np.NaN]
         article_info["url"] = [article["url"]]
 
         temp = pd.DataFrame(article_info)
