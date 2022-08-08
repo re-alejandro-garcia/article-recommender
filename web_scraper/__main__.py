@@ -26,6 +26,7 @@ import sys
 sys.path.append("logging")
 sys.path.append("modules")
 sys.path.append("web_scraper/extract")
+sys.path.append("web_scraper/prepare")
 
 import os
 import logging
@@ -34,6 +35,8 @@ import traceback
 
 import medium
 import news
+
+# import prepare
 
 from configure_logger import configure_logger
 from env import email_address, news_api_key
@@ -45,6 +48,8 @@ functions = {"medium": medium.get_latest_article_data}
 functions_with_api_key = {
     "news": {"function": news.get_latest_article_data, "api_key": news_api_key}
 }
+
+destination_file = "data/file_name.csv"
 
 ###############################################################################
 
@@ -74,9 +79,9 @@ if __name__ == "__main__":
             # article_data = pd.concat([article_data, df]).reset_index(drop = True)
             pass
 
-        # TODO prepare the article data
+        # prepare.prepare_article_data(article_data)
 
-        # TODO write the data to the database
+        # article_data.to_csv(destination_file)
 
         # If the logger  was configured successfully log that execution of the
         # web scraper script completed.
