@@ -38,3 +38,21 @@ def news_test_input():
 def news_test_output():
     df = pd.read_csv("tests/test_files/test_news_get_article_data_output.csv")
     return df
+
+
+###############################################################################
+
+
+@pytest.fixture
+def prepare_text_data_input():
+    df = pd.read_csv("tests/test_files/prepare_text_data_input.csv")
+    return df
+
+
+###############################################################################
+
+
+@pytest.fixture
+def prepare_text_data_output():
+    df = pd.read_csv("tests/test_files/prepare_text_data_output.csv")
+    return df
