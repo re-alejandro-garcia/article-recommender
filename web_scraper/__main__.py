@@ -49,7 +49,7 @@ functions_with_api_key = {
     "news": {"function": news.get_latest_article_data, "api_key": news_api_key}
 }
 
-destination_file = "data/file_name.csv"
+destination_file = "data/collected_data.csv"
 
 ###############################################################################
 
@@ -71,17 +71,23 @@ if __name__ == "__main__":
         sites_and_apis = pd.read_csv("data/site-and-api-data.csv")
         article_data = pd.DataFrame()
         for index, row in sites_and_apis.iterrows():
-            # if row['class'] in functions_with_api_key:
-            #   api_key = functions_with_api_key[row['class']]['api_key']
-            #   df = functions_with_api_key[row['class']]['function'](row['url'], row['name'], row['topic'], api_key)
-            # else:
-            #   df = functions[row['class']](row['url'], row['name'], row['topic'])
-            # article_data = pd.concat([article_data, df]).reset_index(drop = True)
-            pass
+
+            # If the data collection module requires an API key.
+            if row["class"] in functions_with_api_key:
+                api_key = functions_with_api_key[row["class"]]["api_key"]
+                df = functions_with_api_key[row["class"]]["function"](
+                    row["url"], row["name"], row["topic"], api_key
+                )
+
+            # If the data collection module does not require an API key.
+            else:
+                df = functions[row["class"]](row["url"], row["name"], row["topic"])
+                article_data = pd.concat([article_data, df]).reset_index(drop=True)
+            # pass
 
         # prepare.prepare_article_data(article_data)
 
-        # article_data.to_csv(destination_file)
+        article_data.to_csv(destination_file)
 
         # If the logger  was configured successfully log that execution of the
         # web scraper script completed.

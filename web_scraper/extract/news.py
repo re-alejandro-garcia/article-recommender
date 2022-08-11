@@ -118,7 +118,10 @@ def get_news_page(news, topic: str, timestamp: str, url: str) -> pd.DataFrame:
 
         # Increment the page number and yield the results of get_article_data()
         page_number += 1
-        yield get_article_data(articles)
+        # yield get_article_data(articles)
+
+        # Temporary solution to API limitations.
+        break
 
     # Yield the results of get_article_data() for the final page.
     yield get_article_data(articles)
