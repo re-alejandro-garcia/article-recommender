@@ -92,3 +92,21 @@ def prepare_read_time_input() -> pd.DataFrame:
 def prepare_read_time_output() -> pd.DataFrame:
     df = pd.read_csv("tests/test_files/prepare_read_time_output.csv")
     return df
+
+
+###############################################################################
+
+
+@pytest.fixture
+def prepare_article_data_input() -> pd.DataFrame:
+    df = pd.read_csv("tests/test_files/prepare_article_data_input.csv")
+    return df
+
+
+###############################################################################
+
+
+@pytest.fixture
+def prepare_article_data_output() -> pd.DataFrame:
+    df = pd.read_csv("tests/test_files/prepare_article_data_output.csv")
+    return df

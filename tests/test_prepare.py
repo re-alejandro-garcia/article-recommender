@@ -70,10 +70,12 @@ def test_prepare_read_time(prepare_read_time_input, prepare_read_time_output):
 ###############################################################################
 
 
-def test_prepare_article_data():
+def test_prepare_article_data(prepare_article_data_input, prepare_article_data_output):
     """
     Run unit tests on prepare.prepare_article_data(). Each test will compare
     the output to the expected output and check for an exact match.
     """
 
-    pass
+    assert prepare.prepare_article_data(prepare_article_data_input).equals(
+        prepare_article_data_output
+    )

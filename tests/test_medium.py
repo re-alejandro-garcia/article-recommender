@@ -135,7 +135,7 @@ def test_get_article_data(url: str, publication: str, expected_output: dict):
 
 
 @pytest.mark.parametrize("url, publication, base_url", input_get_latest_posts_links)
-def test_get_latest_posts_links(url: str, base_url: str):
+def test_get_latest_posts_links(url: str, publication: str, base_url: str):
     """
     Run unit tests on medium.get_latest_posts_links(). Each test will check if
     the list of returned URLs is a valid set of URLs based on three conditions:
