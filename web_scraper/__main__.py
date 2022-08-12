@@ -78,6 +78,7 @@ if __name__ == "__main__":
                 df = functions_with_api_key[row["class"]]["function"](
                     row["url"], row["name"], row["topic"], api_key
                 )
+                article_data = pd.concat([article_data, df]).reset_index(drop=True)
 
             # If the data collection module does not require an API key.
             else:
@@ -87,7 +88,7 @@ if __name__ == "__main__":
 
         # prepare.prepare_article_data(article_data)
 
-        article_data.to_csv(destination_file)
+        article_data.to_csv(destination_file, index=False)
 
         # If the logger  was configured successfully log that execution of the
         # web scraper script completed.
