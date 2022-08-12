@@ -95,9 +95,21 @@ expected_output_get_article_data = [
 ]
 
 input_get_latest_posts_links = [
-    ("https://towardsdatascience.com/latest", "https://towardsdatascience.com/"),
-    ("https://betterprogramming.pub/latest", "https://betterprogramming.pub/"),
-    ("https://levelup.gitconnected.com/latest", "https://levelup.gitconnected.com/"),
+    (
+        "https://towardsdatascience.com/latest",
+        "Towards Data Science",
+        "https://towardsdatascience.com/",
+    ),
+    (
+        "https://betterprogramming.pub/latest",
+        "Better Programming",
+        "https://betterprogramming.pub/",
+    ),
+    (
+        "https://levelup.gitconnected.com/latest",
+        "Level Up Coding",
+        "https://levelup.gitconnected.com/",
+    ),
 ]
 
 input_get_latest_article_data = [
@@ -122,7 +134,7 @@ def test_get_article_data(url: str, publication: str, expected_output: dict):
 ###############################################################################
 
 
-@pytest.mark.parametrize("url, base_url", input_get_latest_posts_links)
+@pytest.mark.parametrize("url, publication, base_url", input_get_latest_posts_links)
 def test_get_latest_posts_links(url: str, base_url: str):
     """
     Run unit tests on medium.get_latest_posts_links(). Each test will check if
@@ -132,8 +144,10 @@ def test_get_latest_posts_links(url: str, base_url: str):
     200 status code.
     """
 
-    links = medium.get_latest_posts_links(url)
+    links = medium.get_latest_posts_links(url, publication)
     regex = r".+"
+
+    assert len(links) != 0
 
     for link in links:
 

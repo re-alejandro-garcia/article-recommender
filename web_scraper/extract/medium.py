@@ -55,7 +55,7 @@ def get_latest_article_data(url: str, publication: str, topic: str) -> pd.DataFr
     # Initialize the article data dataframe.
     article_data = pd.DataFrame()
 
-    links = get_latest_posts_links(url)
+    links = get_latest_posts_links(url, publication)
 
     # For each article link collect the data and combine the existing article
     # data dataframe with the data collected.
@@ -69,7 +69,7 @@ def get_latest_article_data(url: str, publication: str, topic: str) -> pd.DataFr
 ###############################################################################
 
 
-def get_latest_posts_links(url: str) -> list[str]:
+def get_latest_posts_links(url: str, publication: str) -> list[str]:
     """
     Returns the URL links to 10 latest articles posted on the medium
     publication referenced by the provided URL.
@@ -96,7 +96,7 @@ def get_latest_posts_links(url: str) -> list[str]:
 
     # Gather all <a> elements with the relevant title value and get the href
     # and remove everything after '?source' since this stuff is not needed.
-    links = soup.find_all("a", title="Latest stories published on Towards Data Science")
+    links = soup.find_all("a", title=f"Latest stories published on {publication}")
     return [link["href"].split("?source")[0] for link in links]
 
 
