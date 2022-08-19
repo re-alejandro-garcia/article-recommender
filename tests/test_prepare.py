@@ -36,9 +36,21 @@ def test_prepare_text_data(prepare_text_data_input, prepare_text_data_output):
     output to the expected output and check for an exact match.
     """
 
-    assert prepare.prepare_text_data(prepare_text_data_input).equals(
-        prepare_text_data_output
-    )
+    prepare_text_data_input = prepare.prepare_text_data(prepare_text_data_input)
+
+    for i in range(len(prepare_text_data_input)):
+        assert (
+            prepare_text_data_input.iloc[i]["title"]
+            == prepare_text_data_output.iloc[i]["title"]
+        )
+        assert (
+            prepare_text_data_input.iloc[i]["subtitle"]
+            == prepare_text_data_output.iloc[i]["subtitle"]
+        )
+        assert (
+            prepare_text_data_input.iloc[i]["article_intro"]
+            == prepare_text_data_output.iloc[i]["article_intro"]
+        )
 
 
 ###############################################################################

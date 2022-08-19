@@ -55,6 +55,7 @@ def prepare_text_data_input() -> pd.DataFrame:
 @pytest.fixture
 def prepare_text_data_output() -> pd.DataFrame:
     df = pd.read_csv("tests/test_files/prepare_text_data_output.csv")
+    df = df.fillna("")
     return df
 
 
@@ -73,6 +74,7 @@ def normalize_dates_input() -> pd.DataFrame:
 @pytest.fixture
 def normalize_dates_output() -> pd.DataFrame:
     df = pd.read_csv("tests/test_files/normalize_dates_output.csv")
+    df["date"] = pd.to_datetime(df["date"]).dt.date
     return df
 
 
