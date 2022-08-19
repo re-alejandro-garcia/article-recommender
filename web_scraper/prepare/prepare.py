@@ -11,7 +11,11 @@
 
         prepare_article_data(df)
         prepare_text_data(df)
+        replace_dash(string)
+        replace_newline(string)
+        remove_special_characters(string)
         normalize_dates(df)
+        modify_date_string(date)
         prepare_read_time(df)
 
 """
@@ -23,8 +27,7 @@ import pandas as pd
 
 import unicodedata
 import re
-
-# import datetime
+import datetime
 
 ###############################################################################
 
@@ -88,15 +91,47 @@ def prepare_text_data(df: pd.DataFrame) -> pd.DataFrame:
     df["article_intro"] = df["article_intro"].apply(normalize)
 
     # Remove punctuation and special characters.
-    replace_dash = lambda column: column.replace("-", " ")
-    remove_special_characters = lambda column: re.sub(r"[^a-z0-9\s\+\#]", "", column)
-    df["title"] = df["title"].apply(replace_dash).apply(remove_special_characters)
-    df["subtitle"] = df["subtitle"].apply(replace_dash).apply(remove_special_characters)
+    df["title"] = (
+        df["title"]
+        .apply(replace_dash)
+        .apply(replace_newline)
+        .apply(remove_special_characters)
+    )
+    df["subtitle"] = (
+        df["subtitle"]
+        .apply(replace_dash)
+        .apply(replace_newline)
+        .apply(remove_special_characters)
+    )
     df["article_intro"] = (
-        df["article_intro"].apply(replace_dash).apply(remove_special_characters)
+        df["article_intro"]
+        .apply(replace_dash)
+        .apply(replace_newline)
+        .apply(remove_special_characters)
     )
 
     return df
+
+
+###############################################################################
+
+
+def replace_dash(string: str) -> str:
+    return string.replace("-", " ")
+
+
+###############################################################################
+
+
+def replace_newline(string: str) -> str:
+    return string.replace("\n", " ")
+
+
+###############################################################################
+
+
+def remove_special_characters(string: str) -> str:
+    return re.sub(r"[^a-z0-9\s\+\#]", "", string)
 
 
 ###############################################################################
@@ -117,7 +152,35 @@ def normalize_dates(df: pd.DataFrame) -> pd.DataFrame:
         A pandas dataframe with all dates normalized.
     """
 
-    pass
+    df["date"] = df["date"].apply(modify_date_string)
+    df["date"] = pd.to_datetime(df["date"]).dt.date
+    return df
+
+
+###############################################################################
+
+
+def modify_date_string(date: str) -> str:
+    """
+    Convert the date string to a format that can be re-formatted by Pandas.
+
+    Parameters
+    ----------
+    date: str
+        A string representing a date.
+
+    Returns
+    -------
+    str:
+        A re-formatted date string.
+    """
+
+    if date.endswith("Z"):
+        return date.replace("Z", "")
+    elif re.match(r"[a-zA-Z]{3}\s[0-9]", date):
+        return date + ", " + str(datetime.datetime.now().year)
+    else:
+        return date
 
 
 ###############################################################################
